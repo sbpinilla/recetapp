@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.sbpinilla.recetapp.adapters.RecetasAdapter;
 import com.sbpinilla.recetapp.pojos.Receta;
 
 import java.util.ArrayList;
@@ -16,21 +17,22 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recvclerRecetas;
 
     ArrayList<Receta> recetaArrayList;
-
+    RecetasAdapter recetasAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        createData();
         recvclerRecetas = findViewById(R.id.recyclerRecetas);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
         recvclerRecetas.setLayoutManager(linearLayoutManager);
 
-
+        recetasAdapter = new RecetasAdapter(this, recetaArrayList);
+        recvclerRecetas.setAdapter(recetasAdapter);
     }
 
     public void createData() {
